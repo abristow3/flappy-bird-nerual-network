@@ -1,0 +1,7 @@
+DISPLAY_W = 960
+DISPLAY_H = 540
+FPS = 30
+
+DATA_FONT_SIZE = 18
+DATA_FONT_COLOR = (255,255,255)
+BG_FILENAME = "../assets/pixelart_background.png"
