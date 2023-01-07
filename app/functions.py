@@ -3,5 +3,12 @@ DISPLAY_H = 540
 FPS = 30
 
 DATA_FONT_SIZE = 18
-DATA_FONT_COLOR = (255,255,255)
+DATA_FONT_COLOR = (255, 255, 255)
 BG_FILENAME = "../assets/pixelart_background.png"
+
+PIPE_FILENAME = "../assets/lasers.png"
+PIPE_SPEED = 70 / 1000
+PIPE_DONE = 1
+PIPE_MOVING = 0
+PIPE_UPPER = 1
+PIPE_LOWER = 0
