@@ -1,6 +1,7 @@
 from functions import *
 import pygame
 from pipe import PipeCollection
+from bird import Bird
 
 
 def update_label(data, title, font, x, y, game_display):
@@ -29,13 +30,14 @@ def run_game():
     pipes = PipeCollection(game_display)
     pipes.create_new_set()
 
+    bird = Bird(game_display)
+
     # Set font style
     label_font = pygame.font.SysFont("monospace", DATA_FONT_SIZE)
 
     clock = pygame.time.Clock()
     dt = 0
     game_time = 0
-
 
     while running:
         # Setup 30 frames per second
@@ -46,11 +48,18 @@ def run_game():
         game_display.blit(background_image, (0, 0))
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
+            if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    bird.jump()
+                else:
+                    running = False
 
         update_data_labels(game_display, dt, game_time, label_font)
         pipes.update(dt)
+        bird.update(dt)
+
         pygame.display.update()
 
 
