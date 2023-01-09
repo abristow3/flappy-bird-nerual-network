@@ -19,9 +19,6 @@ class Bird:
         self.rect.centery = y
 
     def move(self, dt):
-        # dt = distance traveled
-        distance = 0
-        new_speed = 0
 
         distance = (self.speed * dt) + (0.5 * GRAVITY * dt * dt)
         new_speed = self.speed + (GRAVITY * dt)
@@ -35,6 +32,7 @@ class Bird:
 
     def jump(self):
         self.speed = BIRD_START_SPEED
+        print("Jump!")
 
     def draw(self):
         self.game_display.blit(self.img, self.rect)
