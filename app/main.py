@@ -10,7 +10,8 @@ def update_label(data, title, font, x, y, game_display):
     return y
 
 
-def update_data_labels(game_display, dt, game_time, num_iterations, num_alive, font):
+def update_data_labels(game_display, dt, game_time, num_iterations, num_alive, most_generations, least_generations,
+                       font):
     y_pos = 10
     gap = 20
     x_pos = 10
@@ -18,6 +19,8 @@ def update_data_labels(game_display, dt, game_time, num_iterations, num_alive, f
     y_pos = update_label(round(game_time / 1000, 2), "Game Time", font, x_pos, y_pos + gap, game_display)
     y_pos = update_label(num_iterations, "Iteration", font, x_pos, y_pos + gap, game_display)
     y_pos = update_label(num_alive, "Alive", font, x_pos, y_pos + gap, game_display)
+    y_pos = update_label(most_generations, "Most Gens", font, x_pos, y_pos + gap, game_display)
+    y_pos = update_label(least_generations, "Least Gens", font, x_pos, y_pos + gap, game_display)
 
 
 def run_game():
@@ -41,6 +44,8 @@ def run_game():
     dt = 0
     game_time = 0
     num_iterations = 1
+    most_generations = 0
+    least_generations = 0
 
     while running:
         # Setup 30 frames per second
@@ -64,12 +69,21 @@ def run_game():
             num_iterations += 1
 
         if game_time > 150000:
+            if most_generations == 0 and least_generations == 0:
+                most_generations = num_iterations
+                least_generations = num_iterations
+            elif num_iterations > most_generations:
+                most_generations = num_iterations
+            elif num_iterations < least_generations:
+                least_generations = num_iterations
+
             pipes.create_new_set()
             game_time = 0
             num_iterations = 0
             birds.create_new_generation()
 
-        update_data_labels(game_display, dt, game_time, num_iterations, num_alive, label_font)
+        update_data_labels(game_display, dt, game_time, num_iterations, num_alive, most_generations, least_generations,
+                           label_font)
         pygame.display.update()
 
 
