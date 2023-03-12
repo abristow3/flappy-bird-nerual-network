@@ -55,7 +55,6 @@ class Bird:
     def check_status(self, pipes):
         if self.rect.bottom > DISPLAY_H:
             self.state = BIRD_DEAD
-            print("Dead Dimple")
         else:
             self.check_hits(pipes)
 

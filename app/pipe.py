@@ -31,7 +31,6 @@ class Pipe:
     def check_status(self):
         if self.rect.right < 0:
             self.state = PIPE_DONE
-            print("PIPE_DONE")
 
     def update(self, dt):
         if self.state == PIPE_MOVING:
