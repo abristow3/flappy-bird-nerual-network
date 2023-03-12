@@ -51,9 +51,7 @@ def run_game():
         game_display.blit(background_image, (0, 0))
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            elif event.type == pygame.KEYDOWN:
+            if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
                 running = False
 
         pipes.update(dt)
@@ -62,7 +60,7 @@ def run_game():
         if num_alive == 0:
             pipes.create_new_set()
             game_time = 0
-            birds.create_new_generation()
+            birds.evolve_population()
             num_iterations += 1
 
         update_data_labels(game_display, dt, game_time, num_iterations, num_alive, label_font)

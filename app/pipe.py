@@ -16,7 +16,6 @@ class Pipe:
             y = y - self.rect.height
 
         self.set_position(x, y)
-        print("PIPE_MOVING")
 
     def set_position(self, x, y):
         self.rect.left = x
